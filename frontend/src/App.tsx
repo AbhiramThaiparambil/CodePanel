@@ -1,4 +1,5 @@
 
+import { Show, SignInButton, SignUpButton, UserButton, SignOutButton } from '@clerk/react'
 import './App.css'
 
 function App() {
@@ -6,8 +7,14 @@ function App() {
   return (
 
     <>
-      <h1 className='text-yellow-500'>hello</h1>
-    </>
+      <Show when="signed-out">
+        <SignInButton mode='modal' />
+        <SignUpButton mode='modal' />
+      </Show>
+      <Show when="signed-in">
+        <UserButton />
+        <SignOutButton />
+      </Show>    </>
   )
 }
 
