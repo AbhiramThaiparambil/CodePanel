@@ -8,11 +8,11 @@ app.use(morgan("dev"));
 
 
 
-const StartServer=()=>{
-    dbConnect()
-app.listen(env.PORT, () => {
-    console.log(`server running on port ${env.PORT}`);
-});
+const StartServer = async () => {
+    await dbConnect()
+    app.listen(env.PORT, () => {
+        console.log(`server running on port ${env.PORT}`);
+    });
 
 }
 
