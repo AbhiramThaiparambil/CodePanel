@@ -8,7 +8,7 @@ export const dbConnect = async () => {
 
         if (!dbUrl) {
             console.log("DataBase url missing")
-            return
+            throw new Error("DataBase url missing")
         }
 
         console.log("Data Base connected ", dbUrl)
