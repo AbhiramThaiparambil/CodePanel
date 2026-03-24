@@ -1,8 +1,10 @@
+import { injectable } from "tsyringe";
 import { IUser } from "../../application/domin/IUser";
 import { IUserRepository } from "../../application/domin/IUserRepository";
-import { CreateUserDTO } from "../../application/domin/dto/CreateUserDTO";
+import { CreateUserDTO } from "../../application/dto/CreateUserDTO";
 import UserModel from "../models/User";
 
+@injectable()
 export class UserRepository implements IUserRepository {
     async create(dto: CreateUserDTO): Promise<IUser> {
         const created = await UserModel.create({
