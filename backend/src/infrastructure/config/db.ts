@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import { env } from "../../lib/env.ts"
+import { env } from "../../lib/env"
 
 
 export const dbConnect = async () => {
@@ -8,7 +8,7 @@ export const dbConnect = async () => {
 
         if (!dbUrl) {
             console.log("DataBase url missing")
-            return
+            throw new Error("DataBase url missing")
         }
 
         console.log("Data Base connected ", dbUrl)
