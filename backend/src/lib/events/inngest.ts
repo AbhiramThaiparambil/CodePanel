@@ -40,7 +40,7 @@ export const deleteUserFunction = inngest.createFunction(
         const { id } = data;
         const deleteUser = container.resolve<IDeleteUserUseCase>(TOKENS.IDeleteUserUseCase);
 
-        await deleteUser.execute({ userId: id });
+        await deleteUser.execute({ clerkId: id });
     }
 );
 

@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
-import { TOKENS } from "../../constant/tokens";
-import { IUser } from "../domin/IUser";
-import { IUserRepository } from "../domin/IUserRepository";
-import { CreateUserDTO } from "../dto/CreateUserDTO";
-import { ICreateUserUseCase } from "./ICreateUserUseCase";
+import { TOKENS } from "../../constant/tokens.js";
+import { IUser } from "../domin/IUser.js";
+import { IUserRepository } from "../domin/IUserRepository.js";
+import { CreateUserDTO } from "../dto/CreateUserDTO.js";
+import { ICreateUserUseCase } from "./ICreateUserUseCase.js";
 
 @injectable()
 export class CreateUserUseCase implements ICreateUserUseCase {
