@@ -1,8 +1,8 @@
 import { injectable } from "tsyringe";
-import { IUser } from "../../application/domin/IUser";
-import { IUserRepository } from "../../application/domin/IUserRepository";
-import { CreateUserDTO } from "../../application/dto/CreateUserDTO";
-import UserModel from "../models/User";
+import { IUser } from "../../application/domin/IUser.js";
+import { IUserRepository } from "../../application/domin/IUserRepository.js";
+import { CreateUserDTO } from "../../application/dto/CreateUserDTO.js";
+import UserModel from "../models/User.js";
 
 @injectable()
 export class UserRepository implements IUserRepository {
@@ -10,7 +10,6 @@ export class UserRepository implements IUserRepository {
         const created = await UserModel.create({
             userName: dto.userName,
             email: dto.email,
-            password: dto.password,
             clerkId: dto.clerkId,
             profileImage: dto.profileImage ?? "",
         });
@@ -33,15 +32,19 @@ export class UserRepository implements IUserRepository {
         return doc ? this.toEntity(doc) : null;
     }
 
-    // ─── mapping ────────────────────────────────────────────────────────────
     private toEntity(doc: any): IUser {
         return {
             id: doc._id.toString(),
             userName: doc.userName,
             email: doc.email,
             profileImage: doc.profileImage ?? "",
-            password: doc.password,
             clerkId: doc.clerkId,
         };
+    }
+
+
+    async findByClerkId(clerkId: string): Promise<IUser | null> {
+        const doc = await UserModel.findOne({ clerkId }).lean();
+        return doc ? this.toEntity(doc) : null;
     }
 }
