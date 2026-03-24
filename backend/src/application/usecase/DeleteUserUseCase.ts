@@ -1,9 +1,12 @@
+import { inject, injectable } from "tsyringe";
+import { TOKENS } from "../../constant/tokens";
 import { IUserRepository } from "../domin/IUserRepository";
 import { DeleteUserDTO } from "../dto/DeleteUserDTO";
 import { IDeleteUserUseCase } from "./IDeleteUserUseCase";
 
+@injectable()
 export class DeleteUserUseCase implements IDeleteUserUseCase {
-    constructor(private readonly userRepository: IUserRepository) { }
+    constructor(@inject(TOKENS.IUserRepository) private readonly userRepository: IUserRepository) { }
 
     async execute(dto: DeleteUserDTO): Promise<void> {
         const existing = await this.userRepository.findById(dto.userId);
