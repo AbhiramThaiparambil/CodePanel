@@ -6,11 +6,13 @@ import { dbConnect } from "./infrastructure/config/db.js";
 import "./infrastructure/config/container.js";
 import { serve } from "inngest/express";
 import { inngest } from "./infrastructure/config/inngest.js";
-import { functions } from "./lib/events/inngest.js";
+import { functions } from "./lib/inngest.js";
+import { clerkMiddleware } from '@clerk/express'
 
 const app = express();
 app.use(morgan("dev"));
 app.use(express.json())
+app.use(clerkMiddleware())
 
 app.use(
     "/api/inngest",
